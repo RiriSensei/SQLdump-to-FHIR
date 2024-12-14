@@ -7,6 +7,8 @@ Repo link : https://github.com/ww9/mysql2sqlite
 Although the conversion was not perfect, I managed to use the find and replace function in VSCode to remove all the unsupported commands in sqlite like LOCKING and UNLOCKING.
 
 
+The output of this project is an SQLite file which can be downloaded from here https://drive.google.com/file/d/1CJnxMBmznseHJTj7QiwAtc3t6Ecx7v12/view?usp=sharing
+
 
 ## Architecture
 
