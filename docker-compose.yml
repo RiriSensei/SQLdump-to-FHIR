@@ -1,0 +1,23 @@
+services:
+  preprocessor:
+    build: 
+      context: .
+      dockerfile: preprocessor/Dockerfile
+    volumes:
+      - ./input:/app/input
+      - ./intermediate:/app/intermediate
+    working_dir: /app
+    # Allow the container to exit normally after completion
+    command: ["python", "preprocessor.py"]
+
+  transformer:
+    build: 
+      context: .
+      dockerfile: transformer/Dockerfile
+    volumes:
+      - ./input:/app/input
+      - ./intermediate:/app/intermediate
+      - ./output:/app/output
+    working_dir: /app
+    # Wait for preprocessing_complete.txt file before running transformer
+    entrypoint: ["sh", "-c", "while [ ! -f /app/intermediate/preprocessing_complete.txt ]; do sleep 1; done; node resourceTransform.js"]
